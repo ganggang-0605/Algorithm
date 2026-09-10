@@ -1,15 +1,19 @@
+from collections import deque 
+
 def solution(people, limit):
     answer = 0
-    people.sort() 
     
-    i = 0              
-    j = len(people) - 1
+    people.sort()
+    queue = deque(people)
     
-    while i <= j:
-        if people[i] + people[j] <= limit:
-            i += 1
+    while len(queue) > 1:
+        light, heavy = queue.popleft(), queue.pop()
         
-        j -= 1
+        if light + heavy > limit:
+            queue.appendleft(light)
         answer += 1
+        
+    if queue:
+        answer += 1    
         
     return answer
