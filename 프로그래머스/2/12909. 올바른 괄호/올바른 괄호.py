@@ -6,8 +6,7 @@ def solution(s):
             stack.append(par)
         else:
             if stack:
-                temp = stack.pop()
-                if temp != '(': return False
+                if stack.pop() != '(': return False
             else:
                 return False
     
