@@ -1,14 +1,6 @@
 def solution(s):
-    stack = []
-
-    for par in s:
-        if par == '(':
-            stack.append(par)
-        else:
-            if stack:
-                if stack.pop() != '(': return False
-            else:
-                return False
-    
-    if stack: return False
-    else: return True
+    count = 0
+    for c in s:
+        count += 1 if c == '(' else -1
+        if count < 0: return False
+    return count == 0
